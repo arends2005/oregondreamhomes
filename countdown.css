@@ -1,0 +1,48 @@
+/* 356-Day Countdown Timer CSS
+ * ============================
+ * Simple and clean styling for the countdown timer
+ */
+
+/* Basic reset and body styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Aldrich", sans-serif;
+  background: #F1614B;
+  overflow-x: hidden;
+}
+
+/* Ensure smooth animations */
+.time-value {
+  transition: all 0.3s ease;
+}
+
+/* Add some subtle animation when numbers change */
+@keyframes numberChange {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.time-value.changing {
+  animation: numberChange 0.3s ease;
+}
+
+/* Responsive design improvements */
+@media (max-width: 768px) {
+  .countdown-container {
+    margin: 10px;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .countdown-container {
+    margin: 5px;
+    padding: 15px;
+  }
+}

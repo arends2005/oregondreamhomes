@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Countdown</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .test-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .time-display {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+        }
+        .debug-info {
+            background: #e0e0e0;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>Countdown Test</h1>
+    
+    <div class="test-container">
+        <h2>Current Countdown</h2>
+        <div class="time-display" id="countdown">Loading...</div>
+        <div class="debug-info" id="debug">Debug info will appear here</div>
+    </div>
+
+    <script>
+        // Simple countdown test
+        const targetDate = new Date('2026-01-01T00:00:00');
+        const countdownElement = document.getElementById('countdown');
+        const debugElement = document.getElementById('debug');
+        
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const target = targetDate.getTime();
+            const difference = target - now;
+            
+            if (difference <= 0) {
+                countdownElement.textContent = 'Countdown Complete!';
+                return;
+            }
+            
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+            const milliseconds = Math.floor((difference % 1000) / 10);
+            
+            countdownElement.textContent = `${days}:${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}:${milliseconds.toString().padStart(2, '0')}`;
+            
+            debugElement.textContent = `Target: ${targetDate.toLocaleString()} | Now: ${new Date().toLocaleString()} | Diff: ${difference}ms | Days: ${days}, Hours: ${hours}, Minutes: ${minutes}, Seconds: ${seconds}, MS: ${milliseconds}`;
+        }
+        
+        // Update immediately and then every 100ms
+        updateCountdown();
+        setInterval(updateCountdown, 100);
+        
+        console.log('Test countdown started');
+        console.log('Target date:', targetDate);
+        console.log('Current date:', new Date());
+    </script>
+</body>
+</html> 

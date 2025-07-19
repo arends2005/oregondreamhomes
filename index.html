@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>356-Day Countdown Timer</title>
+    <link rel="stylesheet" href="countdown.css">
+    <link href="https://fonts.googleapis.com/css2?family=Aldrich:wght@400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: url('default.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            font-family: "Aldrich", sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .countdown-container {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .countdown-title {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .time-unit {
+            text-align: center;
+            min-width: 80px;
+        }
+
+        .time-value {
+            font-size: 4rem;
+            font-weight: bold;
+            display: block;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            line-height: 1;
+        }
+
+        .time-label {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 10px;
+            opacity: 0.8;
+        }
+
+        .separator {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #F1614B;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            line-height: 1;
+            margin-top: -10px;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .countdown-container {
+                padding: 20px;
+                margin: 20px;
+            }
+
+            .countdown-title {
+                font-size: 1.8rem;
+                margin-bottom: 20px;
+            }
+
+            .countdown-timer {
+                gap: 10px;
+            }
+
+            .time-unit {
+                min-width: 60px;
+            }
+
+            .time-value {
+                font-size: 2.5rem;
+            }
+
+            .time-label {
+                font-size: 0.8rem;
+            }
+
+            .separator {
+                font-size: 2.5rem;
+                margin-top: -5px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .countdown-container {
+                padding: 15px;
+                margin: 10px;
+            }
+
+            .countdown-title {
+                font-size: 1.5rem;
+            }
+
+            .time-value {
+                font-size: 2rem;
+            }
+
+            .time-label {
+                font-size: 0.7rem;
+            }
+
+            .separator {
+                font-size: 2rem;
+            }
+        }
+
+        #footer {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            z-index: 1000;
+            overflow: hidden;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        #footer a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        #footer a:hover {
+            opacity: 0.7;
+        }
+
+        /* Cylon Eye Animation */
+        .cylon-eye {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 0, 0, 0.3) 45%, 
+                rgba(255, 0, 0, 0.9) 50%, 
+                rgba(255, 0, 0, 0.3) 55%, 
+                transparent 100%);
+            animation: cylon-scan 7s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes cylon-scan {
+            0% {
+                transform: translateX(-100%);
+            }
+            50% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .footer-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            #footer {
+                bottom: 15px;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #footer {
+                bottom: 10px;
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="countdown-container">
+        <h1 class="countdown-title">Countdown to Event</h1>
+        <div class="countdown-timer">
+            <div class="time-unit">
+                <span class="time-value" id="days">356</span>
+                <div class="time-label">Days</div>
+            </div>
+            <span class="separator">:</span>
+            <div class="time-unit">
+                <span class="time-value" id="hours">23</span>
+                <div class="time-label">Hours</div>
+            </div>
+            <span class="separator">:</span>
+            <div class="time-unit">
+                <span class="time-value" id="minutes">59</span>
+                <div class="time-label">Minutes</div>
+            </div>
+            <span class="separator">:</span>
+            <div class="time-unit">
+                <span class="time-value" id="seconds">59</span>
+                <div class="time-label">Seconds</div>
+            </div>
+            <span class="separator">:</span>
+            <div class="time-unit">
+                <span class="time-value" id="milliseconds">999</span>
+                <div class="time-label">Milliseconds</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer">
+        <div class="cylon-eye"></div>
+        <div class="footer-content">
+            <a href="https://github.com/chrisarends09" target="_blank" style="color: white;">created by cja</a> &copy; <span id="year"></span> - <span id="datetime"></span>
+        </div>
+    </div>
+
+    <script>
+        console.log('HTML loaded, about to load countdown.js');
+        
+        // Populate footer with current year and datetime
+        document.addEventListener('DOMContentLoaded', function() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const datetime = now.toLocaleDateString() + ' ' + now.toLocaleTimeString();
+            
+            document.getElementById('year').textContent = year;
+            document.getElementById('datetime').textContent = datetime;
+        });
+    </script>
+    <script src="countdown.js"></script>
+    <script>
+        console.log('countdown.js loaded');
+        if (typeof window.CountdownTimer !== 'undefined') {
+            console.log('CountdownTimer object available');
+        } else {
+            console.log('CountdownTimer object NOT available');
+        }
+    </script>
+</body>
+</html> 
